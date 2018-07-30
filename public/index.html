@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>User Database</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Main Header -->
+  <div class="jumbotron">
+    <center>
+      <h1 class="display-4">List of People</h1>
+      <p class="lead">This is a simple example of a MySQL database that stores information about a person's name, age and favourite food.</p>
+      <p>The information is stored on a live database, however it can be freely manipulated by anyone using the API below however
+        you like. The backend server is a REST API written in Node.js using Express.js. Frontend is plain JavaScript styled
+        with Bootstrap 4. Queries are submitted using both the ES6 Fetch (Promises) and ES2017 async/await.</p>
+      <hr class="my-4">
+      <p>Source code is freely available on my
+        <a href="https://www.github.com">GitHub</a> page. See more projects on my webspace
+        <a href="http://www.alexeagleson.ca">alexeagleson.ca</a> ~ 2018 Alex Eagleson</p>
+    </center>
+  </div>
+
+  <!-- New Data Form -->
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <form id="new-database-entry" class="bg-light p-3">
+        <input type="hidden" id="person-id">
+        <div class="form-group">
+          <label for="person-name">Name:</label>
+          <input type="text" class="form-control" name="person-name" id="person-name">
+        </div>
+        <div class="form-group">
+          <label for="person-age">Age:</label>
+          <input type="number" class="form-control" name="person-age" id="person-age">
+        </div>
+        <div class="form-group">
+          <label for="person-food">Favourite Food:</label>
+          <input type="text" class="form-control" name="person-food" id="person-food">
+        </div>
+        <input type="submit" id="person-button" class="btn btn-primary" value="Submit New Entry">
+      </form>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+
+  <!-- Loading Spinner -->
+  <center>
+    <div id="database-loader" class="loader"></div>
+  </center>
+
+  <!-- Data Table -->
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <center>
+        <div class="table-responsive p-5">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Favourite Food</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="data-table-body">
+            </tbody>
+          </table>
+        </div>
+        <div class="pb-5">
+          <button class="btn btn-primary btn-sm" onclick="showSubmitComponent()">Submit New Entry</button>
+          <button class="btn btn-danger btn-sm" onclick="removeAllValues()">Initialize Empty</button>
+          <button class="btn btn-danger btn-sm" onclick="populateDummyData()">Initialize with Dummy Data</button>
+        </div>
+      </center>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+
+  <!-- Error Message Modal -->
+  <div class="modal fade" id="errorWarningModal" tabindex="-1" role="dialog" aria-labelledby="errorWarningModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorWarningModalLabel">Error</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="error-modal-text" class="modal-body">
+          bones
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="dummyData.js"></script>
+<script src="dbqueries.js"></script>
+<script src="app.js"></script>
+
+</html>
