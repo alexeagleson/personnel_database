@@ -60,5 +60,3 @@ const dummyData = [{
         food: 'Refried Beans',
     }
 ];
-
-console.log('hello');

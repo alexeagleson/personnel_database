@@ -1,9 +1,5 @@
-console.log('jello');
-
-const rootUrl = '';
-
 async function fetchOneValue(id) {
-    return fetch(`${rootUrl}find_person?id=${id}`, { method: 'GET' })
+    return fetch(`find_person?id=${id}`, { method: 'GET' })
         .then((response) => {
             if (response.status !== 200) throw Error(`${response.status} ${response.statusText}`);
             return response.text();
@@ -15,7 +11,7 @@ async function fetchOneValue(id) {
 async function fetchAllValues() {
     const displayTag = document.getElementById('sql-response')
 
-    return fetch(`${rootUrl}sql`, { method: 'GET' })
+    return fetch(`sql`, { method: 'GET' })
         .then((response) => {
             if (response.status !== 200) throw Error(`${response.status} ${response.statusText}`);
             return response.text();
@@ -52,7 +48,7 @@ async function updateValueAndRefresh(dataValue) {
 async function postNewValue(dataValue) {
     if (!validateSubmitData(dataValue)) return;
 
-    return fetch(`${rootUrl}sql`, {
+    return fetch(`sql`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         body: JSON.stringify(dataValue),
@@ -64,7 +60,7 @@ async function postNewValue(dataValue) {
 async function updateValue(dataValue) {
     if (!validateSubmitData(dataValue)) return;
 
-    return fetch(`${rootUrl}sql`, {
+    return fetch(`sql`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         body: JSON.stringify(dataValue),
@@ -74,7 +70,7 @@ async function updateValue(dataValue) {
 };
 
 async function removeAllValues() {
-    return fetch(`${rootUrl}sql`, { method: 'DELETE' })
+    return fetch(`sql`, { method: 'DELETE' })
         .then(response => {
             fetchAllValues();
             return response;
@@ -83,7 +79,7 @@ async function removeAllValues() {
 };
 
 async function removeOneValue(id) {
-    return fetch(`${rootUrl}remove_person?id=${id}`, { method: 'DELETE' })
+    return fetch(`remove_person?id=${id}`, { method: 'DELETE' })
         .then((response) => {
             if (response.status !== 200) throw Error(`${response.status} ${response.statusText}`);
             return response.text();

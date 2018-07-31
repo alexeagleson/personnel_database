@@ -48,10 +48,11 @@ const generateTableElement = (dataObject) => {
     newTableRow.append(foodColumnData);
 
     const editButtonColumn = document.createElement('td');
-    const editButtonElement = document.createElement('button');
+    const editButtonElement = document.createElement('a');
     editButtonElement.onclick = () => { showUpdateFields(dataObject.id); }
     editButtonElement.innerHTML = 'Edit';
     editButtonElement.className = 'btn btn-primary btn-sm';
+    editButtonElement.href = '#submit-data-form';
     editButtonColumn.append(editButtonElement);
     newTableRow.append(editButtonColumn);
 
@@ -67,6 +68,7 @@ const generateTableElement = (dataObject) => {
 };
 
 const hideSubmitComponent = () => {
+    resetUpdateFields();
     document.getElementById('new-database-entry').style.display = 'none';
 };
 

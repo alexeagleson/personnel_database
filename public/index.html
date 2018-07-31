@@ -37,7 +37,7 @@
   </div>
 
   <!-- New Data Form -->
-  <div class="row">
+  <div class="row" id="submit-data-form">
     <div class="col-md-3"></div>
     <div class="col-md-6">
       <form id="new-database-entry" class="bg-light p-3">
@@ -55,6 +55,7 @@
           <input type="text" class="form-control" name="person-food" id="person-food">
         </div>
         <input type="submit" id="person-button" class="btn btn-primary" value="Submit New Entry">
+        <input type="button" id="cancel-button" class="btn btn-danger" value="Cancel" onclick="hideSubmitComponent()">
       </form>
     </div>
     <div class="col-md-6"></div>
@@ -66,7 +67,7 @@
   </center>
 
   <!-- Data Table -->
-  <div class="row">
+  <div class="row m-2">
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <center>
@@ -86,9 +87,9 @@
           </table>
         </div>
         <div class="pb-5">
-          <button class="btn btn-primary btn-sm" onclick="showSubmitComponent()">Submit New Entry</button>
-          <button class="btn btn-danger btn-sm" onclick="removeAllValues()">Initialize Empty</button>
-          <button class="btn btn-danger btn-sm" onclick="populateDummyData()">Initialize with Dummy Data</button>
+          <a class="btn btn-primary btn-sm m-2" href="#submit-data-form" onclick="showSubmitComponent()">Submit New Entry</a>
+          <button class="btn btn-danger btn-sm m-2" onclick="removeAllValues()">Initialize Empty</button>
+          <button class="btn btn-danger btn-sm m-2" onclick="populateDummyData()">Initialize with Dummy Data</button>
         </div>
       </center>
     </div>
