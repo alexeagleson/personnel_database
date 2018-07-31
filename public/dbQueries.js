@@ -1,4 +1,4 @@
-const rootUrl = 'http://localhost:3000/';
+const rootUrl = 'https://intense-dusk-85727.herokuapp.com/';
 
 async function fetchOneValue(id) {
     return fetch(`${rootUrl}find_person?id=${id}`, { method: 'GET' })
