@@ -22,42 +22,42 @@ const pool = mysql.createPool({
 
 app.get('/sql', (req, res) => {
     pool.query('SELECT * FROM testing', (error, results, fields) => {
-        if (error) throw error;
+        if (error) res.status(404).send('Error: Bad query.');
         res.send(results);
     });
 });
 
 app.get('/find_person', (req, res) => {
     pool.query(`SELECT * FROM testing WHERE id='${req.query.id}' LIMIT 1`, (error, results, fields) => {
-        if (error) throw error;
+        if (error) res.status(404).send('Error: Bad query.');
         res.send(results[0]);
     });
 });
 
 app.post('/sql', (req, res) => {
     pool.query(`INSERT INTO testing (id, name, age, favourite_food) VALUES ('${req.body.id}', '${req.body.name}',${req.body.age},'${req.body.food}')`, (error, results, fields) => {
-        if (error) throw error;
+        if (error) res.status(404).send('Error: Bad query.');
         res.send(results);
     });
 });
 
 app.patch('/sql', (req, res) => {
     pool.query(`UPDATE testing SET name='${req.body.name}', age=${req.body.age}, favourite_food='${req.body.food}' WHERE id='${req.body.id}'`, (error, results, fields) => {
-        if (error) throw error;
+        if (error) res.status(404).send('Error: Bad query.');
         res.send(results);
     });
 });
 
 app.delete('/remove_person', (req, res) => {
     pool.query(`DELETE FROM testing WHERE id='${req.query.id}'`, (error, results, fields) => {
-        if (error) throw error;
+        if (error) res.status(404).send('Error: Bad query.');
         res.send(results);
     });
 });
 
 app.delete('/sql', (req, res) => {
     pool.query(`DELETE FROM testing`, (error, results, fields) => {
-        if (error) throw error;
+        if (error) res.status(404).send('Error: Bad query.');
         res.send(results);
     });
 });

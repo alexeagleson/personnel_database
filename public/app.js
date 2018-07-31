@@ -20,9 +20,9 @@ const resetUpdateFields = () => {
 const validateSubmitData = (dataValue) => {
     let checkData = { valid: true };
     if (!(dataValue.id && dataValue.id.length === 36)) checkData = { valid: false, error: 'ID must be 36 characters long (valid UUID)' };
-    if (!(dataValue.name && dataValue.name.length > 0)) checkData = { valid: false, error: 'Name must be longer than 0 characters' };
+    if (!(dataValue.name && dataValue.name.length > 0 && dataValue.name.match(/^[a-zA-Z0-9_ .-]*$/))) checkData = { valid: false, error: 'Name must be longer than 0 characters and contain only letters, numbers and spaces.' };
     if (!(dataValue.age && dataValue.age > 0 && dataValue.age < 200)) checkData = { valid: false, error: 'Age must be greater than 0 and less than 200' };
-    if (!(dataValue.food && dataValue.food.length > 0)) checkData = { valid: false, error: 'Favourite food must be longer than 0 characters' };
+    if (!(dataValue.food && dataValue.food.length > 0 && dataValue.food.match(/^[a-zA-Z0-9_ .-]*$/))) checkData = { valid: false, error: 'Favourite food must be longer than 0 characters and contain only letters, numbers and spaces.' };
 
     if (!checkData.valid) {
         document.getElementById('error-modal-text').innerHTML = checkData.error;
