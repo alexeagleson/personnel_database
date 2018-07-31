@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser')
@@ -10,7 +12,13 @@ app.use(bodyParser.json());
 
 // Database
 const mysql = require('mysql');
-
+const pool = mysql.createPool({
+    connectionLimit: 10,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+});
 
 app.get('/sql', (req, res) => {
     pool.query('SELECT * FROM testing', (error, results, fields) => {
