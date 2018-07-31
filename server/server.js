@@ -14,10 +14,10 @@ app.use(bodyParser.json());
 const mysql = require('mysql');
 const pool = mysql.createPool({
     connectionLimit: 10,
-    host: '160.153.76.39',
-    user: 'aeagleso',
-    password: 'just_for_testing',
-    database: 'node_project',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
 });
 
 app.get('/sql', (req, res) => {
