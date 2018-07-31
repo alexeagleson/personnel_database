@@ -62,6 +62,7 @@ const generateTableElement = (dataObject) => {
     removeButtonElement.className = 'btn btn-secondary btn-sm';
     removeButtonColumn.append(removeButtonElement);
     newTableRow.append(removeButtonColumn);
+    
     return newTableRow;
 };
 
